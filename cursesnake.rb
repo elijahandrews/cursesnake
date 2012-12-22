@@ -1,8 +1,9 @@
 require './display.rb'
 require './tile.rb'
+require './drawable.rb'
 
-init_screen do
-  initiate_tiles
+Display::init_screen do
+  Display::initiate_tiles
   Curses.refresh
   loop{}
 end

@@ -1,9 +1,7 @@
-class Tile
-  attr_accessor :char, :traversable
+require './drawable.rb'
 
-  def draw x , y
-    Curses.setpos x, y
-    Curses.addstr @char
-  end
+class Tile < Drawable
+  attr_accessor :traversable
+
 end
 
