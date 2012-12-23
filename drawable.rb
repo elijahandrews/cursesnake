@@ -1,9 +1,8 @@
 class Drawable
-  attr_accessor :char
+  attr_accessor :y, :x, :char
 
-  def draw x , y
-    Curses.setpos x, y
-    Curses.addstr @char
+  def draw
+    Display.draw @y, @x, @char
   end
 end
 

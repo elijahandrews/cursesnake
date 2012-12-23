@@ -16,13 +16,8 @@ class Display
       Curses.init_screen
       Curses.curs_set 0
       Curses.stdscr.keypad(true)
-      begin
-        yield
-      rescue
-        puts "asdf"
-      ensure
-        Curses.close_screen
-      end
+      yield
+      Curses.close_screen
     end
 
     def initiate_tiles
@@ -42,9 +37,16 @@ class Display
             tile.traversable = true
           end
 
-          tile.draw i, j
+          tile.x = j
+          tile.y = i
+          tile.draw
         end
       end
+    end
+
+    def draw(y, x, char)
+      Curses.setpos y, x
+      Curses.addstr char
     end
 
   end
