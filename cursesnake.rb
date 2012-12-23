@@ -1,6 +1,6 @@
 require './display.rb'
 require './tile.rb'
-require './drawable.rb'
+require './entity.rb'
 require './character.rb'
 
 Display::init_screen do

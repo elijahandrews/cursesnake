@@ -1,6 +1,6 @@
-require './drawable.rb'
+require './entity.rb'
 
-class Character < Drawable
+class Character < Entity
 
   def initialize(y, x, char)
     @y = y

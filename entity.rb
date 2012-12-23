@@ -1,4 +1,4 @@
-class Drawable
+class Entity
   attr_accessor :y, :x, :char
 
   def draw

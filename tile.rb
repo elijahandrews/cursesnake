@@ -1,6 +1,6 @@
-require './drawable.rb'
+require './entity.rb'
 
-class Tile < Drawable
+class Tile < Entity
   attr_accessor :traversable
 
 end
