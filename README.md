@@ -1,4 +1,4 @@
 cursesnake
 ==========
 
-An ACSII ruby implementation of snake using curses.
+An ASCII ruby implementation of snake using curses.
