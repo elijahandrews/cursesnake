@@ -17,6 +17,7 @@ def char_if_pressed
   end
 end
 
+
 Display::init_screen do
   Curses.timeout = 0
   Display::initiate_tiles
@@ -26,14 +27,14 @@ Display::init_screen do
     c = Curses.getch
     unless c.nil?
       case c
-      when Curses::Key::UP    then char.velocity = [-1, 0]
-      when Curses::Key::DOWN  then char.velocity = [1, 0]
-      when Curses::Key::RIGHT then char.velocity = [0, 1]
-      when Curses::Key::LEFT  then char.velocity = [0, -1]
+      when Curses::Key::UP    then char.set_velocity [-1,0]
+      when Curses::Key::DOWN  then char.set_velocity [1,0]
+      when Curses::Key::RIGHT then char.set_velocity [0, 1]
+      when Curses::Key::LEFT  then char.set_velocity [0,-1]
       when (?q) then break
       end
     end
-    char.move_by_velocity
+    break unless char.move_by_velocity_if_valid
     Curses.refresh
     sleep(0.1)
   end

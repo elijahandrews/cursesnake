@@ -21,6 +21,8 @@ class Display
     end
 
     def initiate_tiles
+      # Note: Tiles currently correspond to map tiles. They do not
+      # include the character or any other dynamic elements
       @tiles = Array.new(SCREEN_HEIGHT){ Array.new(SCREEN_WIDTH){ Tile.new } }
 
       (0..SH).each do |i|
