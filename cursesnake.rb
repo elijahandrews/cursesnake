@@ -17,11 +17,26 @@ def char_if_pressed
   end
 end
 
+def generate_food(char, previous_tail = [])
+  y, x = 0
+  loop do
+    y = Random.rand(Display::SH) + 1
+    x = Random.rand(Display::SW) + 1
+    break unless char.positions.include?([y,x]) ||
+      !Display.instance_variable_get(:@tiles)[y][x].traversable ||
+      (!previous_tail.empty? && previous_tail == [y,x])
+  end
+  Display.draw y, x, '#'
+  return [y,x]
+end
+
 
 Display::init_screen do
+  score = 0
   Curses.timeout = 0
   Display::initiate_tiles
   char = Character.new 20, 20, '@', [0,0]
+  food_position = generate_food(char)
   Curses.refresh
   loop do
     c = Curses.getch
@@ -34,7 +49,13 @@ Display::init_screen do
       when (?q) then break
       end
     end
-    break unless char.move_by_velocity_if_valid
+    previous_tail = char.move_by_velocity_if_valid
+    break unless previous_tail
+    if previous_tail != [] && char.positions.first == food_position
+      food_position = generate_food(char, previous_tail)
+      char.add_tail(previous_tail)
+      score += 1
+    end
     Curses.refresh
     sleep(0.1)
   end
