@@ -24,7 +24,7 @@ Display::init_screen do
     food_position = generate_food(char)
     Curses.refresh
 
-    score_window = ScoreWindow.new Curses.lines / 3, Curses.cols - 15
+    score_window = ScoreWindow.new Display::SCREEN_HEIGHT / 3, Display::SCREEN_WIDTH
 
     sleep(0.5)
 

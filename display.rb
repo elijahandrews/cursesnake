@@ -4,9 +4,9 @@ class Display
 
   # Use SW/SH when traversing through the screen, and SCREEN_WIDTH
   # and SCREEN_HEIGHT when creating the array
-  SCREEN_WIDTH = 90
+  SCREEN_WIDTH = 70
   SW = SCREEN_WIDTH - 1
-  SCREEN_HEIGHT = 40
+  SCREEN_HEIGHT = 30
   SH = SCREEN_HEIGHT - 1
 
   class << self
