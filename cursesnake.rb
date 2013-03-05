@@ -2,6 +2,7 @@ require './display.rb'
 require './tile.rb'
 require './entity.rb'
 require './character.rb'
+require './score_window.rb'
 
 def generate_food(char, previous_tail = [])
   y, x = 0
@@ -16,14 +17,15 @@ def generate_food(char, previous_tail = [])
   return [y,x]
 end
 
-
 Display::init_screen do
   score = 0
-  Curses.timeout = 0
   Display::initiate_tiles
   char = Character.new 20, 20, '@', [0,0]
   food_position = generate_food(char)
   Curses.refresh
+
+  score_window = ScoreWindow.new Curses.lines / 3, Curses.cols - 15
+
   loop do
     c = Curses.getch
     unless c.nil?
@@ -40,7 +42,8 @@ Display::init_screen do
     if previous_tail != [] && char.positions.first == food_position
       food_position = generate_food(char, previous_tail)
       char.add_tail(previous_tail)
-      score += 1
+      score_window.score += 1
+      score_window.write_score
     end
     Curses.refresh
     sleep(0.1)

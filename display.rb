@@ -15,6 +15,7 @@ class Display
       Curses.noecho
       Curses.init_screen
       Curses.curs_set 0
+      Curses.timeout = 0
       Curses.stdscr.keypad(true)
       yield
       Curses.close_screen
