@@ -36,7 +36,7 @@ Display::init_screen do
         when Curses::Key::DOWN  then char.set_velocity [1,0]
         when Curses::Key::RIGHT then char.set_velocity [0,1]
         when Curses::Key::LEFT  then char.set_velocity [0,-1]
-        when (?q) then break
+        when (?q) then exit
         end
       end
       previous_tail = char.move_by_velocity_if_valid
@@ -59,7 +59,10 @@ Display::init_screen do
     Curses.timeout = 31337
     loop do
       c = Curses.getch
-      exit if c == 'n' || c == 'q'
+      if c
+        exit if c == 'n' || c == 'q'
+        break
+      end
     end
     Curses.timeout = 0
   end
