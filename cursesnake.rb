@@ -20,7 +20,7 @@ end
 Display::init_screen do
   loop do
     Display::initiate_tiles
-    char = Character.new 20, 30, '@', [0,1], 20
+    char = Character.new 20, 30, '@', [0,1], 25
     food_position = generate_food(char)
     Curses.refresh
 
@@ -48,7 +48,11 @@ Display::init_screen do
         score_window.write_score
       end
       Curses.refresh
-      sleep(0.05)
+      if char.velocity.first.abs == 1
+        sleep(0.05)
+      else
+        sleep(0.025)
+      end
     end
 
     Curses.setpos(Display::SCREEN_HEIGHT/2 - 5,Display::SCREEN_WIDTH/2 - 10)
